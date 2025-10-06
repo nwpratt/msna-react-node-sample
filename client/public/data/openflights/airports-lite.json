@@ -1,0 +1,4 @@
+[
+  { "id": 1, "name": "Hartsfield–Jackson Atlanta International", "iata": "ATL", "country": "US", "lat": 33.6407, "lon": -84.4277 },
+  { "id": 2, "name": "Los Angeles International", "iata": "LAX", "country": "US", "lat": 33.9416, "lon": -118.4085 }
+]

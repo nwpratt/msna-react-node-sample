@@ -1,0 +1,29 @@
+{
+  "name": "msna-react-node-cesium-selfhealing",
+  "private": true,
+  "version": "0.6.0",
+  "description": "Self-healing dev: React (Vite) + Cesium + DevExtreme + Node/Express API, with OpenFlights sample routes",
+  "scripts": {
+    "setup": "node scripts/setup.mjs",
+    "install:all": "npm install && npm --prefix server install && npm --prefix client install",
+    "install:all:legacy": "npm install --legacy-peer-deps && npm --prefix server install --legacy-peer-deps && npm --prefix client install --legacy-peer-deps",
+    "dev": "npx concurrently -k \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
+    "clean": "npx rimraf node_modules client/node_modules server/node_modules package-lock.json client/package-lock.json server/package-lock.json",
+    "build:prod": "npm --prefix client run build",
+    "start:prod": "cross-env NODE_ENV=production npm --prefix server run start"
+  },
+  "devDependencies": {
+    "@types/multer": "^2.0.0",
+    "@types/sanitize-filename": "^1.1.28",
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "rimraf": "^5.0.5"
+  },
+  "dependencies": {
+    "@cesium/engine": "^21.0.0",
+    "@cesium/widgets": "^13.2.0",
+    "multer": "^2.0.2",
+    "sanitize-filename": "^1.6.3",
+    "zod": "^4.1.11"
+  }
+}

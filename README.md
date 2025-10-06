@@ -1,56 +1,80 @@
-# MS&A Logistics Demo — React + DevExtreme + Node/Express
+# MS&A Demo (React + Cesium + Node + DevExtreme)
 
-> Portfolio demo: React (Vite) + DevExtreme charts with a Node/Express API for MS&A/decision‑support patterns—simulation runs, metrics, and dashboards.
+## Prereqs
+- Node 20+ and npm 10+
+- A Cesium ion token
 
-A small, portfolio‑ready sample that mirrors patterns from mission‑support MS&A apps:
-- **React** front‑end with **DevExtreme** charts
-- **Express** API with simple MS&A‑style endpoints
-- Ready to run locally or deploy, and easy to put on GitHub
+## First run (from repo root)
+npm --prefix server ci && npm --prefix client ci
 
-## Structure
-```
-msna-react-node-sample/
-  ├─ client/        # React (Vite), DevExtreme charts, Router
-  └─ server/        # Express API (CORS enabled)
-```
+# Put your token in client/.env
+# VITE_CESIUM_ION_TOKEN=your_token_here
 
-## Quick start
+## Start both apps
+npm run dev
 
-### 1) API
+# Expect:
+# - Express API on http://localhost:5001
+# - Vite client on http://localhost:5173
+
+## Troubleshooting
+- If you see 404 `/api/sims` the server isn’t running; start from repo root.
+- If “concurrently is not recognized”, run: `npm i -D concurrently cross-env` in the root or the script’s package.
+- If Cesium CSS is missing, ensure `import "cesium/Build/CesiumUnminified/Widgets/widgets.css";`
+  (or version-safe equivalent) is in the page that mounts the Viewer.
+
+
+## Production build (single-server deploy)
+
+1. Build the client (Vite) bundle:
+
 ```bash
-cd server
-cp .env.sample .env   # optional
-npm install
-npm run dev           # or: npm start
-# Server on http://localhost:4000
+npm --prefix client run build
 ```
 
-### 2) Client
+2. Start the API server (it will serve the static client from `client/dist`):
+
 ```bash
-cd client
-cp .env.sample .env   # defaults to http://localhost:4000
-npm install
-npm run dev           # Vite on http://localhost:5173
+npm --prefix server run start
+# or: NODE_ENV=production node server/src/server.js
 ```
 
-Open http://localhost:5173 in your browser.
+By default the server listens on `http://localhost:5001` and will serve the SPA at `/`.
+All non-`/api/*` routes fall back to `index.html`.
 
-## Deploy (optional)
-- **Client**: Vercel, Netlify, or GitHub Pages (build: `npm run build`).
-- **Server**: Render, Fly.io, Railway, or any Node host (run: `npm start`).  
-  Update `VITE_API_URL` in the client environment when deploying separately.
+### Optional: one-liner from the repo root
 
-## Topics
-`react` · `vite` · `devextreme` · `devexpress` · `charts` · `data-visualization` · `express` · `nodejs` · `ms-a` · `simulation` · `decision-support` · `logistics` · `portfolio`
+```bash
+npm run build:prod && npm run start:prod
+```
 
-## Notes
-- Chart theme comes from `devextreme/dist/css/dx.light.css` (imported in `client/src/main.jsx`).
-- The API simulates basic metrics and a "run simulation" endpoint for demo purposes only.
+Add these scripts to your root `package.json` if you want the shortcut:
 
-## Third‑party notices
-This repository’s source code is licensed under the MIT license (see **LICENSE**).
+```json
+{
+  "scripts": {
+    "build:prod": "npm --prefix client run build",
+    "start:prod": "cross-env NODE_ENV=production npm --prefix server run start"
+  }
+}
+```
 
-It depends on third‑party packages with their own licenses:
-- React — MIT License
-- Express — MIT License
-- DevExtreme (**DevExpress**) — commercial / per‑developer license. If you build or distribute this project with DevExtreme, you must comply with DevExpress’s EULA and licensing terms.
+## Self-healing bootstrap (Windows/macOS/Linux)
+
+From the repo root:
+
+```bash
+npm run setup
+npm run dev
+```
+
+The `setup` script:
+- Ensures `client/.env` exists (adds a placeholder if missing)
+- Installs server and client dependencies with the correct working directories
+- Prints next steps
+
+> Tip: If corporate proxies or strict networks cause install hiccups, you can fall back to:
+>
+> ```bash
+> npm run install:all:legacy
+> ```

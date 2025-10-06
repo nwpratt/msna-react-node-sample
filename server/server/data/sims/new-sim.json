@@ -1,0 +1,8 @@
+{
+  "title": "CONUS demo",
+  "legs": [
+    { "from": "KATL", "to": "KCLT", "count": 8,  "speedKts": 430 },
+    { "from": "KATL", "to": "KMCO", "count": 10, "speedKts": 430 },
+    { "from": "KDFW", "to": "KDEN", "count": 6,  "speedKts": 440 }
+  ]
+}

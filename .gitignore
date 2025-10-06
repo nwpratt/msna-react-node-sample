@@ -1,0 +1,102 @@
+# ------------------------------------------------------
+# OS / Editor junk
+# ------------------------------------------------------
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+$RECYCLE.BIN/
+*.lnk
+
+# IntelliJ / JetBrains
+.idea/
+*.iml
+
+# VS Code: ignore everything by default but allow common shared files
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+# Vim / Emacs / temp
+*~
+*.swp
+*.swo
+.#*
+*.orig
+*.rej
+
+# ------------------------------------------------------
+# Node / tooling
+# ------------------------------------------------------
+**/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
+
+# Caches
+**/.cache/
+**/.eslintcache
+**/.tsbuildinfo
+*.tsbuildinfo
+.vitest/
+coverage/
+.nyc_output/
+
+# ------------------------------------------------------
+# Vite / build outputs
+# ------------------------------------------------------
+# Client build
+client/dist/
+# (vite-plugin-cesium emits assets under dist/cesium)
+client/dist/cesium/
+
+# In case you build anywhere else
+**/dist/
+**/build/
+**/out/
+.vite/
+
+# ------------------------------------------------------
+# Env & secrets
+# (keep Cesium Ion token and any API keys out of git)
+# ------------------------------------------------------
+.env
+.env.*
+!.env.example
+client/.env
+client/.env.*
+!client/.env.example
+server/.env
+server/.env.*
+!server/.env.example
+*.local
+
+# ------------------------------------------------------
+# Runtime / temp data
+# ------------------------------------------------------
+logs/
+*.log
+*.pid
+*.pid.lock
+pids/
+tmp/
+temp/
+**/tmp/
+**/temp/
+
+# If your API writes uploads or generated sim files here, ignore them:
+server/uploads/
+server/runtime/
+server/.tmp/
+
+# ------------------------------------------------------
+# Archives / patches (handy while iterating)
+# ------------------------------------------------------
+*.patch
+*.diff
+*.tgz
+*.zip

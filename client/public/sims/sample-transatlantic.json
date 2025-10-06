@@ -1,0 +1,12 @@
+{
+  "id": "sample-transatlantic",
+  "name": "Transatlantic demo",
+  "startTimeUtc": "2025-01-01T12:00:00Z",
+  "durationMin": 180,
+  "loop": true,
+  "flights": [
+    { "id": "flt-1", "callsign": "MSN101", "from": { "iata": "JFK" }, "to": { "iata": "LHR" }, "speedKts": 470, "cruiseAltFt": 36000, "departOffsetMin": 0 },
+    { "id": "flt-2", "callsign": "MSN202", "from": { "iata": "BOS" }, "to": { "iata": "CDG" }, "speedKts": 460, "cruiseAltFt": 36000, "departOffsetMin": 20 },
+    { "id": "flt-3", "callsign": "MSN303", "from": { "iata": "IAD" }, "to": { "iata": "FRA" }, "speedKts": 470, "cruiseAltFt": 36000, "departOffsetMin": 40 }
+  ]
+}
